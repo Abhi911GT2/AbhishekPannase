@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technical Manuscript</title>
+    <meta name="description" content="Cinematic portfolio demonstrating complex engineering problems.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Source+Code+Pro:wght@400;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="noise-overlay"></div>
+    <canvas id="three-canvas"></canvas>
+    <canvas id="cursor-canvas"></canvas>
+
+    <main class="content-wrapper">
+        <section class="hero interactable">
+            <div class="hero-content">
+                <h1 class="user-name">Abhishek Shankar Pannase</h1>
+                <h2 class="sub-heading">Engineering Complex Systems - If it moves fast, flies high, or is underwater, I
+                    have probably tried to break it.</h2>
+                <div class="quote-block">
+                    <blockquote>
+                        "The fundamental cause of the trouble is that the stupid are cocksure while the
+                        intelligent are
+                        full of doubt."
+                    </blockquote>
+                    <cite>— Bertrand Russell</cite>
+                </div>
+            </div>
+        </section>
+
+        <section class="experience interactable">
+            <div class="parallax-container" id="wing-schematic">
+                <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" stroke="rgba(255,255,255,0.08)"
+                    fill="none" stroke-width="1" class="schematic-svg">
+                    <!-- Abstract Wing drawing -->
+                    <path d="M 50 200 Q 400 100 750 150 Q 800 250 700 250 L 50 200" />
+                    <line x1="100" y1="190" x2="100" y2="210" />
+                    <line x1="200" y1="170" x2="200" y2="210" />
+                    <line x1="300" y1="150" x2="300" y2="213" />
+                    <line x1="400" y1="135" x2="400" y2="218" />
+                    <circle cx="400" cy="176" r="4" fill="rgba(255,255,255,0.1)" />
+                    <text x="410" y="180" fill="rgba(255,255,255,0.15)" font-family="Source Code Pro"
+                        font-size="10">AERODYNAMICS</text>
+                </svg>
+            </div>
+
+            <div class="experience-block airbus-accent">
+                <img src="Airbus-Symbol.png" alt="Airbus Logo" class="company-logo"
+                    onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <div class="company-logo-placeholder" style="background: var(--airbus-blue); display: none;"></div>
+                <h2>AIRBUS CTC GmbH</h2>
+                <h3 class="role-title">Systems Engineer - R&D Department</h3>
+                <span class="location-tag">Stade - Hamburg, Germany</span>
+                <p>Translating the physical chaos of aircraft into the precision of maths and physics KerML - SysML v2.
+                    It's a work in progress.</p>
+            </div>
+
+            <div class="experience-block right-align rfa-accent">
+                <img src="RFA.jpg" alt="RFA Logo" class="company-logo"
+                    onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <div class="company-logo-placeholder" style="background: var(--rfa-orange); display: none;"></div>
+                <h2>Rocket Factory Augsburg</h2>
+                <h3 class="role-title">Systems Engineer</h3>
+                <span class="location-tag">Augsburg, Germany</span>
+                <p>Avionics meets propulsion. I spent my time ensuring the hardware didn't outpace the logic. Some days
+                    the architecture won; some days the wiring won.</p>
+            </div>
+
+            <div class="parallax-container" id="chassis-schematic">
+                <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" stroke="rgba(255,255,255,0.08)"
+                    fill="none" stroke-width="1" class="schematic-svg">
+                    <!-- Abstract Chassis drawing -->
+                    <path d="M 100 200 L 200 150 L 600 150 L 700 200 L 600 250 L 200 250 Z" />
+                    <circle cx="200" cy="250" r="40" />
+                    <circle cx="600" cy="250" r="40" />
+                    <line x1="200" y1="150" x2="200" y2="250" stroke-dasharray="4" />
+                    <line x1="600" y1="150" x2="600" y2="250" stroke-dasharray="4" />
+                    <text x="650" y="270" fill="rgba(255,255,255,0.15)" font-family="Source Code Pro"
+                        font-size="10">OTA_DEPLOY_NEXUS</text>
+                </svg>
+            </div>
+
+            <div class="experience-block jlr-accent">
+                <img src="KPIT.png" alt="KPIT Logo" class="company-logo"
+                    onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <div class="company-logo-placeholder" style="background: var(--jlr-green); display: none;"></div>
+                <h2>KPIT - Jaguar Land Rover (JLR)</h2>
+                <h3 class="role-title">Systems Engineer - SOTA Connected Vehicles</h3>
+                <span class="location-tag">Pune, India [Team - Coventry, UK]</span>
+                <p>Managed SOTA updates for vehicles. I learned more from the rollback strategies than the
+                    successful deployments.</p>
+            </div>
+
+            <div class="experience-block right-align education-accent">
+                <div class="company-logo-placeholder" style="background: var(--edu-purple);"></div>
+                <h2>Education</h2>
+
+                <div class="edu-item">
+                    <h3 class="role-title">MSc - Computer Engineering</h3>
+                    <span class="location-tag">Technical University Magdeburg (OVGU), Germany</span>
+                </div>
+
+                <div class="edu-item" style="margin-top: 1.5rem;">
+                    <h3 class="role-title">BTech - Electronics and Telecommunication</h3>
+                    <span class="location-tag">DKTE Engineering Institute (Autonomous), India</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="skills-marquee-container interactable" id="skills-section">
+            <div class="marquee-track">
+                <!-- Group 1 -->
+                <div class="marquee-content">
+                    <span>MBSE</span><span class="dot">•</span>
+                    <span>KerML (SysML v2)</span><span class="dot">•</span>
+                    <span>C++</span><span class="dot">•</span>
+                    <span>Python</span><span class="dot">•</span>
+                    <span>ROS2</span><span class="dot">•</span>
+                    <span>Over-The-Air (OTA)</span><span class="dot">•</span>
+                    <span>Systems Semantics Mapping</span><span class="dot">•</span>
+                    <span>3D Experience (EBOM)</span><span class="dot">•</span>
+                    <span>Cameo</span><span class="dot">•</span>
+                    <span>Capella</span><span class="dot">•</span>
+                </div>
+                <!-- Group 2 (Exact Clone for seamless looping) -->
+                <div class="marquee-content">
+                    <span>MBSE (KerML)</span><span class="dot">•</span>
+                    <span>Systems Semantics Mapping</span><span class="dot">•</span>
+                    <span>Python</span><span class="dot">•</span>
+                    <span>Requirements Engineering</span><span class="dot">•</span>
+                    <span>Over-The-Air (OTA)</span><span class="dot">•</span>
+                    <span>CAN Debugging</span><span class="dot">•</span>
+                    <span>Vehicle Architectures</span><span class="dot">•</span>
+                    <span>Verification & Validation</span><span class="dot">•</span>
+                    <span>3DX, Cameo-Catia, Capella</span><span class="dot">•</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="feynman-break interactable">
+            <div class="quote-block feynman-quote-block">
+                <blockquote>
+                    "I would rather have questions that can't be answered than answers that can't be questioned."
+                </blockquote>
+                <cite>— Richard Feynman</cite>
+            </div>
+        </section>
+
+        <footer class="footer interactable">
+            <div class="terminal">
+                <span class="prompt">></span> Status: Open to engineering systems problems. <a
+                    href="https://www.linkedin.com/in/abhishek-pannase" target="_blank" rel="noopener noreferrer" class="contact-link">[ ESTABLISH_LINKEDIN_HANDSHAKE ]</a><span class="cursor"></span>
+            </div>
+        </footer>
+    </main>
+    <script type="importmap">
+    {
+      "imports": {
+        "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+      }
+    }
+    </script>
+    <script type="module" src="script.js"></script>
+</body>
+
+</html>

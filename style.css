@@ -1,0 +1,394 @@
+:root {
+    --bg-color: #121212;
+    --text-primary: #e0e0e0;
+    --text-heading: #c20000;
+    --text-secondary: #9e9e9e;
+    --accent: #ffffff;
+    --airbus-blue: #4da6ff;
+    --rfa-orange: #ff6b35;
+    --jlr-green: #4caf50;
+    --edu-purple: #b388ff;
+    --font-serif: 'Playfair Display', serif;
+    --font-arial: 'Source Code Pro', monospace;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    font-family: var(--font-serif);
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+/* Noise overlay */
+.noise-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Canvases */
+#three-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+    /* Behind content */
+    pointer-events: none;
+}
+
+#cursor-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1000;
+    /* above everything but behind noise */
+    pointer-events: none;
+}
+
+/* Typography & Layout */
+.content-wrapper {
+    position: relative;
+    z-index: 10;
+}
+
+.user-name {
+    font-size: 5rem;
+    font-family: var(--font-serif);
+    font-weight: 700;
+    letter-spacing: -2px;
+    margin-bottom: 0.5rem;
+    color: var(--text-heading);
+}
+
+.sub-heading {
+    font-size: 1.5rem;
+    font-family: var(--font-serif);
+    line-height: 1.6;
+    color: var(--text-secondary);
+    text-align: center;
+    margin: 0 auto 5rem;
+    max-width: 700px;
+}
+
+h1,
+h2,
+h3,
+blockquote {
+    font-weight: 400;
+}
+
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.quote-block {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.quote-block blockquote {
+    font-size: 1.8rem;
+    font-style: italic;
+    line-height: 1.4;
+    margin-bottom: 1.5rem;
+    color: var(--accent);
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.quote-block cite {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    font-family: var(--font-arial);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+/* Experience Section */
+.experience {
+    position: relative;
+    padding: 10rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.experience-block {
+    margin-bottom: 20rem;
+    max-width: 500px;
+    position: relative;
+    z-index: 2;
+    background: rgba(18, 18, 18, 0.4);
+    backdrop-filter: blur(2px);
+    padding: 2rem;
+    border-radius: 4px;
+    border-left: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.experience-block:last-child {
+    margin-bottom: 5rem;
+}
+
+.experience-block.right-align {
+    margin-left: auto;
+    text-align: right;
+    border-left: none;
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.experience-block h2 {
+    font-size: 2.2rem;
+    margin-bottom: 1.5rem;
+    color: var(--accent);
+    display: inline-block;
+    font-family: var(--font-arial);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+}
+
+.experience-block p {
+    font-size: 1.3rem;
+    color: var(--text-secondary);
+    line-height: 1.8;
+}
+
+.role-title {
+    font-size: 1.2rem;
+    color: var(--accent);
+    font-family: var(--font-arial);
+    margin-bottom: 0.2rem;
+    font-weight: 400;
+}
+
+.company-logo-placeholder {
+    width: 40px;
+    height: 40px;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    opacity: 0.8;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+.company-logo {
+    height: 70px;
+    width: auto;
+    max-width: 250px;
+    margin-bottom: 1rem;
+    display: block;
+    object-fit: contain;
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.1));
+}
+
+.experience-block.right-align .company-logo-placeholder,
+.experience-block.right-align .company-logo {
+    margin-left: auto;
+}
+
+.location-tag {
+    display: block;
+    font-size: 1rem;
+    color: var(--text-secondary);
+    font-family: var(--font-arial);
+    margin-top: -1rem;
+    margin-bottom: 1.5rem;
+    opacity: 0.7;
+}
+
+/* Accents */
+.experience-block.airbus-accent {
+    border-left-color: rgba(77, 166, 255, 0.3);
+}
+
+.experience-block.airbus-accent h2 {
+    color: var(--airbus-blue);
+    border-bottom-color: rgba(77, 166, 255, 0.2);
+}
+
+.experience-block.rfa-accent {
+    border-right-color: rgba(255, 107, 53, 0.3);
+}
+
+.experience-block.rfa-accent h2 {
+    color: var(--rfa-orange);
+    border-bottom-color: rgba(255, 107, 53, 0.2);
+}
+
+.experience-block.jlr-accent {
+    border-left-color: rgba(76, 175, 80, 0.3);
+}
+
+.experience-block.jlr-accent h2 {
+    color: var(--jlr-green);
+    border-bottom-color: rgba(76, 175, 80, 0.2);
+}
+
+.experience-block.education-accent {
+    border-right-color: rgba(179, 136, 255, 0.3);
+}
+
+.experience-block.education-accent h2 {
+    color: var(--edu-purple);
+    border-bottom-color: rgba(179, 136, 255, 0.2);
+}
+
+/* Parallax Schematics */
+.parallax-container {
+    position: absolute;
+    width: 800px;
+    height: 400px;
+    z-index: 0;
+    opacity: 0.8;
+    pointer-events: none;
+    will-change: transform;
+}
+
+#wing-schematic {
+    top: 5rem;
+    right: -150px;
+}
+
+#chassis-schematic {
+    top: 45rem;
+    left: -200px;
+}
+
+/* Skills Marquee */
+.skills-marquee-container {
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    overflow: hidden;
+    padding: 2rem 0; /* Reduced gap */
+    position: relative;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    background: linear-gradient(90deg, rgba(18, 18, 18, 1) 0%, rgba(255, 255, 255, 0.02) 50%, rgba(18, 18, 18, 1) 100%);
+    display: flex;
+}
+
+.marquee-track {
+    display: flex;
+    width: max-content;
+    animation: scroll-left 35s linear infinite;
+}
+
+.marquee-content {
+    display: flex;
+    align-items: center;
+}
+
+.marquee-content span {
+    font-family: var(--font-arial);
+    font-size: 1.8rem;
+    color: var(--text-secondary);
+    margin: 0 3rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    white-space: nowrap;
+}
+
+.marquee-content span.dot {
+    color: var(--accent);
+    margin: 0;
+    font-size: 1rem;
+}
+
+@keyframes scroll-left {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* Feynman Break */
+.feynman-break {
+    padding: 6rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle at center, rgba(255, 255, 255, 0.02) 0%, transparent 60%);
+}
+
+.feynman-quote-block blockquote {
+    font-size: 2.2rem;
+}
+
+/* Footer & Terminal */
+.footer {
+    padding: 8rem 2rem;
+    text-align: center;
+    font-family: var(--font-arial);
+}
+
+.terminal {
+    display: inline-block;
+    padding: 1.5rem 3rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.6);
+    color: var(--text-secondary);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.prompt {
+    color: #5ab552;
+    margin-right: 0.5rem;
+    font-weight: bold;
+}
+
+.contact-link {
+    color: var(--accent);
+    text-decoration: none;
+    margin-left: 0.5rem;
+    transition: all 0.3s ease;
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.3);
+}
+
+.contact-link:hover {
+    color: #5ab552;
+    border-bottom-color: #5ab552;
+    text-shadow: 0 0 10px rgba(90, 181, 82, 0.4);
+}
+
+.cursor {
+    display: inline-block;
+    width: 10px;
+    background-color: var(--accent);
+    animation: blink 1s step-end infinite;
+    margin-left: 8px;
+    vertical-align: middle;
+    height: 1.2em;
+}
+
+@keyframes blink {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+}
